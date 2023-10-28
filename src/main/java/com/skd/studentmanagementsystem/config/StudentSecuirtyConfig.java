@@ -19,7 +19,7 @@ public class StudentSecuirtyConfig {
                 .authorizeHttpRequests((authorize) -> {
                     authorize.requestMatchers("/api/v1/student/login").permitAll();
                     authorize.requestMatchers("/api/v1/student/register").permitAll();
-                    authorize.requestMatchers("/api/v1/admin/**").hasRole("Admin");
+                    authorize.requestMatchers("/api/v1/admin/**").hasRole("ADMIN");
                     authorize.anyRequest().authenticated();
                 }).httpBasic(Customizer.withDefaults());
         return http.build();
