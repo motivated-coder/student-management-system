@@ -2,6 +2,7 @@ package com.skd.studentmanagementsystem.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -20,6 +21,7 @@ public class StudentSecuirtyConfig {
                     authorize.requestMatchers("/api/v1/student/login").permitAll();
                     authorize.requestMatchers("/api/v1/student/register").permitAll();
                     authorize.requestMatchers("/api/v1/admin/**").hasRole("ADMIN");
+                    authorize.requestMatchers(HttpMethod.OPTIONS,"/**").permitAll();
                     authorize.anyRequest().authenticated();
                 }).httpBasic(Customizer.withDefaults());
         return http.build();
